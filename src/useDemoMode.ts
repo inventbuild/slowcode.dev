@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ChangeEvent } from "react";
+import { useRef, useState, type ChangeEvent } from "react";
 import { SEQUENCES, PUNCHES, IDLE_TIMEOUT, TYPING_DELAY } from "./constants";
 
 type Modes = "demo" | "stopped" | "waiting";

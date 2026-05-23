@@ -1,10 +1,4 @@
-import {
-  useRef,
-  useLayoutEffect,
-  useState,
-  type ChangeEvent,
-  useEffect,
-} from "react";
+import { useRef, useLayoutEffect, useState, useEffect } from "react";
 import "./App.css";
 import useDemoMode from "./useDemoMode";
 import {
@@ -33,7 +27,7 @@ function rcToPunchRect(row: number, column: number) {
 }
 
 function App() {
-  const [fontSize, setFontSize] = useState(FONT_MAX);
+  const [fontSize] = useState(FONT_MAX);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const { startDemo, stopDemo, startWaiting, currentText, updateText } =
     useDemoMode();
