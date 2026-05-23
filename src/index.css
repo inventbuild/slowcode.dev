@@ -86,6 +86,10 @@ h2 {
   /* line-height: normal; */
 }
 
+a {
+  color: var(--accent);
+}
+
 h1 {
   font-size: 100px;
   margin: 32px 0;
@@ -147,4 +151,19 @@ code {
   outline: none;
   resize: none;
   field-sizing: fixed;
+}
+
+.emailSignup {
+  border: none;
+  border-bottom: 1px black solid;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.submitButton {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
 }

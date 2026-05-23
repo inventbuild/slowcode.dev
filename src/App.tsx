@@ -159,30 +159,28 @@ function App() {
           data-style="plain"
         >
           <p>
-            <label htmlFor="field[a793a245-c7b0-4459-89d0-40af49564cdc]">
-              Email
-            </label>
             <br />
             <input
+              className="emailSignup"
               type="email"
               name="field[a793a245-c7b0-4459-89d0-40af49564cdc]"
+              placeholder="your@email.address"
               id="field[a793a245-c7b0-4459-89d0-40af49564cdc]"
               required
             />
+            <button
+              id="button[45904d11-dea0-4568-9119-b5d4600b195e]"
+              type="submit"
+              className="submitButton"
+            >
+              Subscribe
+            </button>
           </p>
           <p
             id="success[45904d11-dea0-4568-9119-b5d4600b195e]"
             style={{ display: "none", color: "green" }}
           >
             Thank you for joining our mailing list!
-          </p>
-          <p>
-            <button
-              id="button[45904d11-dea0-4568-9119-b5d4600b195e]"
-              type="submit"
-            >
-              Subscribe
-            </button>
           </p>
         </form>
       </section>
