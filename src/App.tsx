@@ -13,6 +13,8 @@ import {
   PUNCHES_Y_OFFSET,
   COLUMN_SPACER,
   ROW_Y_POS,
+  FONT_MIN,
+  FONT_MAX,
 } from "./constants";
 
 function rcToPunchRect(row: number, column: number) {
@@ -30,13 +32,10 @@ function rcToPunchRect(row: number, column: number) {
   );
 }
 
-const FONT_MIN = 20;
-const FONT_MAX = 120;
-
 function App() {
   const [fontSize, setFontSize] = useState(FONT_MAX);
-  const inputRef = useRef<HTMLInputElement>(null);
-  const { mode, startDemo, stopDemo, startWaiting, currentText, updateText } =
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const { startDemo, stopDemo, startWaiting, currentText, updateText } =
     useDemoMode();
 
   useEffect(() => {
@@ -46,6 +45,25 @@ function App() {
     };
   }, []);
 
+  // BigMailer signup
+  useEffect(() => {
+    const t = window.setTimeout(() => {
+      (window as any)._bmxq = (window as any)._bmxq || [];
+      (window as any)._bmxq.push([
+        "_setupForm",
+        "form[45904d11-dea0-4568-9119-b5d4600b195e]",
+        false,
+      ]);
+      if (document.querySelector('script[src*="cdn.bigmailer.io/lib.js"]'))
+        return;
+      const s = document.createElement("script");
+      s.src = "https://cdn.bigmailer.io/lib.js";
+      s.async = true;
+      document.body.appendChild(s);
+    }, 0);
+    return () => clearTimeout(t);
+  }, []);
+
   function fitFontSize() {
     const el = inputRef.current;
     if (!el) return;
@@ -53,7 +71,7 @@ function App() {
     let size = FONT_MAX;
     el.style.fontSize = `${size}px`;
 
-    while (size > FONT_MIN && el.scrollWidth > el.clientWidth) {
+    while (size > FONT_MIN && el.scrollHeight > el.clientHeight) {
       size -= 1;
       el.style.fontSize = `${size}px`;
     }
@@ -62,17 +80,6 @@ function App() {
   useLayoutEffect(() => {
     fitFontSize();
   }, [currentText]);
-
-  // function updateText(e: ChangeEvent<HTMLInputElement>) {
-  //   setText(
-  //     e.currentTarget.value
-  //       .toUpperCase()
-  //       .slice(0, 80)
-  //       .split("")
-  //       .filter((c) => c in PUNCHES)
-  //       .join(""),
-  //   );
-  // }
 
   function getPunchRects() {
     // for each character in text, get a Punch
@@ -93,22 +100,25 @@ function App() {
     // start demo waiting
     startWaiting();
   }
-  console.log("useDemoMode mode: ", mode);
 
   return (
     <>
       <section id="hero">
         <div className="hero">
-          <input
+          <textarea
+            rows={2}
             id="punch-input"
-            type="text"
             value={currentText}
             onChange={updateText}
             ref={inputRef}
-            style={{ fontSize }}
+            style={
+              {
+                fontSize,
+              } as React.CSSProperties
+            }
             onFocus={onInputFocus}
             onBlur={onInputBlur}
-          ></input>
+          ></textarea>
 
           <svg
             width="1392"
@@ -133,6 +143,83 @@ function App() {
       </section>
       <section id="info">
         <h1>A monthly meetup to practice coding by hand</h1>
+        <p>
+          Slow Code is a monthly get-together where we explicitly avoid using
+          LLMs to generate code for us.
+        </p>
+        <p>
+          The idea is extremely simple: don't forget what it's like to do it by
+          hand.
+        </p>
+        <h2>Sign up</h2>
+        <p>
+          If you're interested in this sort of thing, add your email address.
+          This will only be used for information on meeting up. I promise I
+          would rather commit seppuku than use your email address for anything
+          else.
+        </p>
+        <form
+          id="form[45904d11-dea0-4568-9119-b5d4600b195e]"
+          method="POST"
+          action="https://app.bigmailer.io/t/f/45904d11-dea0-4568-9119-b5d4600b195e"
+          data-style="plain"
+        >
+          <p>
+            <label htmlFor="field[a793a245-c7b0-4459-89d0-40af49564cdc]">
+              Email
+            </label>
+            <br />
+            <input
+              type="email"
+              name="field[a793a245-c7b0-4459-89d0-40af49564cdc]"
+              id="field[a793a245-c7b0-4459-89d0-40af49564cdc]"
+              required
+            />
+          </p>
+          <p
+            id="success[45904d11-dea0-4568-9119-b5d4600b195e]"
+            style={{ display: "none", color: "green" }}
+          >
+            Thank you for joining our mailing list!
+          </p>
+          <p>
+            <button
+              id="button[45904d11-dea0-4568-9119-b5d4600b195e]"
+              type="submit"
+            >
+              Subscribe
+            </button>
+          </p>
+        </form>
+      </section>
+      <section id="info">
+        <h2>About This Site</h2>
+        <p>
+          It would be pretty lame to have generated this site by LLM, so I
+          hand-coded it from scratch (well, from the Vite React boilerplate).
+          And in case you didn't already notice, the header is an input field
+          that you can type whatever you want in.
+        </p>
+        <p>
+          The punch card is an{" "}
+          <a href="https://americanhistory.si.edu/collections/object/nmah_904248">
+            IBM 5081
+          </a>
+          . The encoding works{" "}
+          <a href="https://homepage.divms.uiowa.edu/%7Ejones/cards/codes.html">
+            like this
+          </a>
+          . The font is{" "}
+          <a href="https://fontlibrary.org/en/font/keypunch029">Keypunch029</a>,
+          the <i>exact</i> same font used for this punch card.
+        </p>
+        <p></p>
+      </section>
+      <section id="footer" style={{ marginBottom: "40px" }}>
+        <>
+          By <a href="https://tedbot.com">Ted Hayes</a> and{" "}
+          <a href="https://inventbuild.studio/">InventBuild.Studio</a>
+        </>
       </section>
     </>
   );

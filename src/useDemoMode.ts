@@ -30,7 +30,7 @@ export default function useDemoMode() {
   }
 
   function startTypingTimer() {
-    console.log("startTypingTimer");
+    // console.log("startTypingTimer");
     typingTimeoutRef.current = window.setTimeout(() => {
       // add next character to current string
       setCurrentText(
@@ -58,11 +58,12 @@ export default function useDemoMode() {
   }
 
   function startDemo(whichSequence?: number) {
-    console.log("startDemo");
+    // console.log("startDemo");
 
     setMode("demo");
     // initiate 'typing' animation
-    if (whichSequence) currentTargetString.current = SEQUENCES[whichSequence];
+    if (whichSequence !== undefined)
+      currentTargetString.current = SEQUENCES[whichSequence];
     else currentTargetString.current = selectRandomSequence();
     setCurrentText(currentTargetString.current[0]);
     currentTypingIndex.current = 0;
@@ -81,7 +82,7 @@ export default function useDemoMode() {
     startIdleTimer();
   }
 
-  function updateText(e: ChangeEvent<HTMLInputElement>) {
+  function updateText(e: ChangeEvent<HTMLTextAreaElement>) {
     // console.log("useDemoMode > updateText > ", e.currentTarget.value);
     setCurrentText(
       e.currentTarget.value
@@ -92,13 +93,6 @@ export default function useDemoMode() {
         .join(""),
     );
   }
-
-  console.log(
-    "currentTargetString: ",
-    currentTargetString,
-    " currentTypingIndex: ",
-    currentTypingIndex.current,
-  );
 
   return {
     mode,

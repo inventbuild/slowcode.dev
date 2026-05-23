@@ -96,15 +96,16 @@ h1 {
   }
 }
 h2 {
-  font-size: 24px;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
+  font-size: 56px;
+  margin: 20px 0 8px;
   @media (max-width: 1024px) {
-    font-size: 20px;
+    font-size: 40px;
   }
 }
 p {
-  margin: 0;
+  margin: 0 0 8px;
+  width: 70%;
+  font-family: "Roboto", sans-serif;
 }
 
 code,
@@ -124,6 +125,7 @@ code {
 
 .hero {
   margin: 20px;
+  container-type: inline-size;
 }
 
 .hero svg {
@@ -133,14 +135,16 @@ code {
   user-select: none;
 }
 
-input#punch-input {
+#punch-input {
   font-family: var(--mono);
   border: none;
   width: 100%;
   text-align: center;
   box-sizing: border-box;
   letter-spacing: 0;
-  /* font-size: clamp(20px, calc(100cqw / 80), 100px); */
+  /* font-size: clamp(20px, calc(100cqw / var(--chars, 1)), 120px); */
   overflow: hidden;
   outline: none;
+  resize: none;
+  field-sizing: fixed;
 }

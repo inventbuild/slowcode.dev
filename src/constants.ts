@@ -43,6 +43,9 @@ export const PUNCHES_START_X = 50;
 export const PUNCHES_Y_OFFSET = 0;
 export const COLUMN_SPACER = 16.37;
 
+export const FONT_MIN = 20;
+export const FONT_MAX = 120;
+
 export const ROW_Y_POS: Record<number, number> = {
   12: 34,
   11: 80,
