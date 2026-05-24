@@ -20,7 +20,6 @@ function rcToPunchRect(row: number, column: number) {
       y={ROW_Y_POS[row] + PUNCHES_Y_OFFSET}
       width="11"
       height="24"
-      fill="black"
       key={`${row}${column}`}
     />
   );
@@ -124,10 +123,9 @@ function App() {
             <g id="card-bg" pointerEvents="none">
               <path
                 d="M1.5 83L50 1.5H1348C1371 1.5 1390.5 15.5 1390.5 44V563.5C1390.5 598.3 1367.5 611.5 1342.5 611.5H39.5C15 611.5 1.49997 584.5 1.5 572V83Z"
-                stroke="black"
                 strokeWidth="3"
               />
-              <text x={PUNCHES_START_X} y="30" fill="black" fontSize="31">
+              <text x={PUNCHES_START_X} y="30" fontSize="31">
                 {currentText}
               </text>
             </g>
